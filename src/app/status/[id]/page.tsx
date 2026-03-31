@@ -31,13 +31,11 @@ async function getStatusData(id: string) {
 async function getTripData(
   hafasTripId: string,
   lineName: string,
-  start: string
 ) {
   try {
     const trip = await TraewellingSdk.trains.trip({
       hafasTripId,
       lineName,
-      start,
     });
 
     if (!('id' in trip)) {
@@ -70,7 +68,6 @@ export default async function Page({ params }: StatusPageProps) {
   const tripData = await getTripData(
     status.journey.hafasTripId,
     status.journey.line.name,
-    status.journey.origin.station.trwlId!.toString()
   );
 
   if ('trwlId' in tripData) {
