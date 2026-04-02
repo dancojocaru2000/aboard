@@ -77,20 +77,20 @@ export default async function Page({ params }: StatusPageProps) {
 
   const arrivingAt = new Date(
     status.journey.destination.arrival.planned!
-  ).toISOString();
+  ).getTime();
   const departuringAt = new Date(
     status.journey.origin.departure.planned!
-  ).toISOString();
+  ).getTime();
 
   const destinationIndex = tripData.stopovers?.findLastIndex(
     ({ arrival, station }) =>
-      new Date(arrival.planned!).toISOString() === arrivingAt &&
+      new Date(arrival.planned!).getTime() === arrivingAt &&
       station.trwlId === status.journey.destination.station.trwlId
   );
 
   const originIndex = tripData.stopovers?.findIndex(
     ({ departure, station }) =>
-      new Date(departure.planned!).toISOString() === departuringAt &&
+      new Date(departure.planned!).getTime() === departuringAt &&
       station.trwlId === status.journey.origin.station.trwlId
   );
 
